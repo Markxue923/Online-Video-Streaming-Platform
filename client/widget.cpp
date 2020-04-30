@@ -19,7 +19,6 @@ Widget::Widget(QWidget *parent) :
 
     //sender=new QUdpSocket(this);
     //receiver=new QUdpSocket(this);
-
     //receiver->bind(8888,QUdpSocket::ReuseAddressHint);
     //connect(&timer,SIGNAL(timeout()),this,SLOT(onTimeout()));
     //connect(receiver,SIGNAL(readyRead()),this,SLOT(onReadyRead());
@@ -29,8 +28,6 @@ Widget::Widget(QWidget *parent) :
     QObject::connect(sw,SIGNAL(sig_sw_quit()),this,SLOT(show()));
     QObject::connect(aw,SIGNAL(sig_aw_quit()),sw,SLOT(show()));
     QObject::connect(cw,SIGNAL(sig_cw_quit()),sw,SLOT(show()));
-
-
 }
 
 
@@ -44,6 +41,7 @@ Widget::~Widget()
     sender->writeDatagram(data,20,QHostAddress::Broadcast,8888);
 }
 */
+
 void Widget::on_btnRegist_clicked()
 {
     QString name = ui->leName->text();
@@ -82,22 +80,22 @@ void Widget::onReadyRead()
     while(socket->read(protocol.toChar(),protocol.size())){
             switch(protocol.getType()){
             case Protocol::regist_success:
-                QMessageBox::information(this,"注册信息",protocol.getData());
+                QMessageBox::information(this,"regist_success",protocol.getData());
                 break;
 
             case Protocol::regist_failed:
-                QMessageBox::warning(this,"注册信息",protocol.getData());
+                QMessageBox::warning(this,"regist_failed",protocol.getData());
                 break;
 
             case Protocol::login_success:
-                QMessageBox::information(this,"注册信息",protocol.getData());
+                QMessageBox::information(this,"login_success",protocol.getData());
                 this->hide();
                 sw->setName(protocol.getName());
                 sw->show();
                 break;
 
             case Protocol::login_failed:
-                QMessageBox::warning(this,"登录信息",protocol.getData());
+                QMessageBox::warning(this,"login_failed",protocol.getData());
                 break;
 
             case Protocol::chat:

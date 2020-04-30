@@ -15,11 +15,10 @@ anchor::anchor(QTcpSocket* anchor_socket,QWidget *parent) :
     sender=new QUdpSocket(this);
     receiver=new QUdpSocket(this);
 
-
     QObject::connect(timer,SIGNAL(timeout()),this,SLOT(onTimeout()));
-   // QCameraInfo info = QCameraInfo::defaultCamera();
-    camera=new QCamera(this);
-    VideoSurface* vf= new VideoSurface(this);
+    //QCameraInfo info = QCameraInfo::defaultCamera();
+    camera = new QCamera(this);
+    VideoSurface* vf = new VideoSurface(this);
     camera->setViewfinder(vf);
     QObject::connect(vf,SIGNAL(videoChanged(QVideoFrame)),this,SLOT(vedioChangedSlot(QVideoFrame)));
     QObject::connect(anchor_udp,SIGNAL(readyRead()),this,SLOT(onReadyreadaudio()));
@@ -34,7 +33,6 @@ anchor::anchor(QTcpSocket* anchor_socket,QWidget *parent) :
     audioInput=new QAudioInput(format);
     audioOutput=new QAudioOutput(format);
     audioOutputIODevice=audioOutput->start();
-
 }
 
 
@@ -121,7 +119,7 @@ void anchor::vedioChangedSlot(QVideoFrame curFrame)
 {
     static int i=0;
     i++;
-    int unitBytes=4096;
+    int unitBytes = 4096;
     QVideoFrame frame(curFrame);
     frame.map(QAbstractVideoBuffer::ReadOnly);
     QImage image(frame.bits(),frame.width(),frame.height(),QVideoFrame::imageFormatFromPixelFormat(frame.pixelFormat()));
@@ -131,7 +129,7 @@ void anchor::vedioChangedSlot(QVideoFrame curFrame)
     QPixmap pixmap=QPixmap::fromImage(image);
     pixmap=pixmap.scaled(ui->camera_show->size());
     ui->camera_show->setPixmap(pixmap);
-    if(i%4!=0)
+    if(i%4 != 0)
     {
         return;
     }
@@ -156,14 +154,12 @@ void anchor::vedioChangedSlot(QVideoFrame curFrame)
             {
                 pack.isLastpack=true;
                 pack.packTaken=unitBytes-writeByte+byteCount;
-            }else
-            {
+            } else {
                 pack.isLastpack=false;
                 pack.packTaken=unitBytes;
             }
             anchor_udp->writeDatagram((char*)&pack,sizeof(ImagePackage),QHostAddress::Broadcast,8888);
-        }else
-        {
+        } else {
             break;
         }
     }

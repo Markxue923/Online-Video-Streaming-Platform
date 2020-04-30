@@ -11,7 +11,6 @@ typedef struct{
     char data[4096];
 }ImagePackage;
 
-
 struct AudioPackage{
     char data[1024];
     int datalen;

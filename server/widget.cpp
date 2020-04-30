@@ -46,8 +46,6 @@ void Widget::onNewConnection()
                      cs,&ClientSocket::deleteLater);
     QObject::connect(th,&QThread::finished,
                      th,&QThread::deleteLater);
-
-
 }
 
 void Widget::onSigSend(QTcpSocket *socket, QByteArray arr)

@@ -16,7 +16,6 @@ public:
     VideoSurface(QObject* parent =0);
     virtual QList<QVideoFrame::PixelFormat> supportedPixelFormats(QAbstractVideoBuffer::HandleType handletype) const;
     bool present(const QVideoFrame &frame);
-
 };
 
 #endif // VIDEOSURFACE_H

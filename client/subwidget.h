@@ -20,7 +20,7 @@ class SubWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit SubWidget(QTcpSocket* socket,QWidget *parent = 0);
+    explicit SubWidget(QTcpSocket* socket, QWidget *parent = 0);
     ~SubWidget();
 
     QString getName() const;
@@ -28,11 +28,9 @@ public:
     void appendtext(const QString& text);
 
 private:
-
     Ui::SubWidget *ui;
     QString name;
     QTcpSocket* socket;
-
 
 signals:
     void sig_sw_quit();

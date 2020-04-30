@@ -9,34 +9,36 @@ class Protocol
 {
 public:
     enum Type{
-        none=0,
-        quit=1,
-        regist=2,
-        regist_success=3,
-        regist_failed=4,
-        login=5,
-        login_success=6,
-        login_failed=7,
-        chat=8,
-        sql=9,
-        create_room=10,
-        create_success=11,
-        refresh_room=12,
-        printf_room=13,
-        refresh_client=14,
-        enter_anchor=15,
-        enter_anchor_success=16,
-        anchor_quit=17,
-        client_quit=18,
-        printf_client=19
+        none = 0,
+        quit = 1,
+        regist = 2,
+        regist_success = 3,
+        regist_failed = 4,
+        login = 5,
+        login_success = 6,
+        login_failed = 7,
+        chat = 8,
+        sql = 9,
+        create_room = 10,
+        create_success = 11,
+        refresh_room = 12,
+        printf_room = 13,
+        refresh_client = 14,
+        enter_anchor = 15,
+        enter_anchor_success = 16,
+        anchor_quit = 17,
+        client_quit = 18,
+        printf_client = 19
 };
+
 private:
     struct Ptc{
         Type type;
         char name[24];
         char pwd[24];
         char data[100];
-    }ptc;
+    } ptc;
+
 public:
     Protocol();
 

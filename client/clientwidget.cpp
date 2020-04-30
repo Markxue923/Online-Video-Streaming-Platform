@@ -15,7 +15,6 @@ clientwidget::clientwidget(QTcpSocket* client_socket,QWidget *parent) :
     sender=new QUdpSocket(this);
     receiver=new QUdpSocket(this);
 
-
     groupAddress.setAddress("239.88.88.88");
     QObject::connect(client_udp,SIGNAL(readyRead()),this,SLOT(on_udp_read()));
     QObject::connect(client_udp,SIGNAL(readyRead()),this,SLOT(onReadyreadaudio()));
@@ -66,7 +65,7 @@ void clientwidget::set_client_name(const QString &value)
 void clientwidget::client_append(const QString &text)
 {
     ui->client_display->clear();
-    QStringList list=text.split("\n");
+    QStringList list = text.split("\n");
     for(auto it : list){
         ui->client_display->append(it);
     }

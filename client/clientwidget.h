@@ -39,7 +39,6 @@ public:
 
     void client_append(const QString& text);
 
-
 private slots:
     void on_client_exit_clicked();
 
@@ -53,7 +52,6 @@ private slots:
 
     void capturedatafromdevice();
 
-
     void on_microphone_open_button_clicked();
 
     void on_microphone_close_button_clicked();
@@ -63,13 +61,11 @@ private:
     QTcpSocket* client_socket;
     QString anchor_name;
     QString client_name;
-
     QUdpSocket* client_udp;
     QUdpSocket* sender;
     QUdpSocket* receiver;
     QAudioInput* audioInput;
     QAudioOutput* audioOutput;
-
     QIODevice* audioOutputIODevice;
     QIODevice* audioInputIODevice;
 

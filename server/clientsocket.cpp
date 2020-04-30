@@ -25,8 +25,8 @@ void ClientSocket::onReadyRead()
     while(socket->read(p.toChar(),p.size())){
         switch(p.getType()){
         case Protocol::regist:
-            qDebug()<<"regist";
-            regist(p);
+            qDebug()<<"registration";
+            registration(p);
             break;
         case Protocol::login:
             login(p);
@@ -72,7 +72,7 @@ void ClientSocket::onDisConnected()
 }
 
 
-void ClientSocket::regist(Protocol &p)
+void ClientSocket::registration(Protocol &p)
 {
     QString name = p.getName();
     QString pwd = p.getPwd();
@@ -82,15 +82,15 @@ void ClientSocket::regist(Protocol &p)
     SqlDao* sd = new SqlDaoImp;
     User* ret = sd->selectUser(user);
 
-    if(ret==NULL){
+    if(ret == NULL){
         sd->insertUser(user);
-        //注册成功
+        //Registration successful
         p.setType(Protocol::regist_success);
-        p.setData("Regist success");
-    }else{
-        //重复注册
+        p.setData("Registration successful");
+    } else{
+        //Registration failed
         p.setType(Protocol::regist_failed);
-        p.setData("Regist fail");
+        p.setData("Registration failed");
     }
 
     emit sigSend(socket,p.toArray());
@@ -111,17 +111,17 @@ void ClientSocket::login(Protocol &p)
     if(ret==NULL){
         p.setType(Protocol::login_failed);
         p.setData("User does not exist");
-    }else{
+    } else{
         if(ret->getIsOnline()){
             p.setType(Protocol::login_failed);
             p.setData("User already logged in");
-        }else{
+        } else{
             if(ret->getPwd() == pwd){
                 p.setType(Protocol::login_success);
                 p.setData("Login success");
                 ret->setIsOnline(true);
                 sd->updateUser(*ret);
-            }else{
+            } else{
                 p.setType(Protocol::login_failed);
 
                 p.setData("Wrong password");
@@ -129,7 +129,7 @@ void ClientSocket::login(Protocol &p)
         }
         delete ret;
     }
-    emit sigSend(socket,p.toArray());
+    emit sigSend(socket, p.toArray());
 
     delete sd;
 }
@@ -139,25 +139,25 @@ void ClientSocket::chat(Protocol &p)
     SqlDao* sd = new SqlDaoImp;
 
     User* ret = sd->selectUser(User(p.getName(),p.getPwd()));
-    if(ret==NULL) return;
+    if(ret == NULL) return;
 
 
     QVector<Room>::iterator it=rooms.begin();
-    for(;it!=rooms.end();++it)
+    for(; it!=rooms.end(); ++it)
     {
         if(it->get_room_name() == p.getName())
         {
             Room& room=*it;
             QVector<QTcpSocket*>& users=room.return_Users();
-            QVector<QTcpSocket*>::iterator it_users=users.begin();
+            QVector<QTcpSocket*>::iterator it_users = users.begin();
             QString text = p.getPwd();
             text += " : ";
             text += p.getData();
             p.setData(text);
             p.setType(Protocol::chat);
-            for(auto it_users :users)
+            for(auto it_users : users)
             {
-               emit sigSend(it_users,p.toArray());
+               emit sigSend(it_users, p.toArray());
             }
         }
     }
@@ -170,7 +170,7 @@ void ClientSocket::quit(Protocol &p)
     SqlDao* sd = new SqlDaoImp;
 
     User* ret = sd->selectUser(User(p.getName(),p.getPwd()));
-    if(ret == 0)    return;
+    if(ret == 0){return;}
 
     ret->setIsOnline(false);
     sd->updateUser(*ret);

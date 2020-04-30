@@ -12,7 +12,7 @@ class ClientSocket : public QObject
 private:
     QTcpSocket* socket;
 
-    void regist(Protocol& p);
+    void registration(Protocol& p);
     void login(Protocol& p);
     void chat(Protocol& p);
     void quit(Protocol& p);
