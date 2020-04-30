@@ -9,6 +9,7 @@ private:
     QString name;
     QString pwd;
     bool isOnline;
+
 public:
     User();
     User(QString name,QString pwd,bool isOnline=false);

@@ -1,4 +1,3 @@
-
 #include "user.h"
 
 QString User::getName() const

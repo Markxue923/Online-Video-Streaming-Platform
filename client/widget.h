@@ -20,7 +20,6 @@ public:
 
 private slots:
     void on_btnRegist_clicked();
-
     void on_btnLogin_clicked();
     void onReadyRead();
 

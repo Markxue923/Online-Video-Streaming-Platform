@@ -11,6 +11,7 @@ private:
     QVector<QString> users_name;
     QVector<QTcpSocket*> users;
     QString room_name;
+
 public:
     Room();
     //QString getUsername() const;
@@ -18,7 +19,6 @@ public:
 
     QString get_room_name()const;
     void set_room_name(const QString &value);
-
 
     QVector<QTcpSocket *>& return_Users();
     QVector<QString>& return_users_name();

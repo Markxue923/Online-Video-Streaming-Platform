@@ -9,6 +9,7 @@ private:
     DBManager();
     static DBManager* instance;
     QSqlDatabase db;
+
 public:
     static DBManager* getInstance();
     void createConn();

@@ -10,11 +10,14 @@ private:
     SocketManager();
     static SocketManager* instance;
     QVector<QTcpSocket*> sockets;
+
 public:
     static SocketManager* getInstance();
+
     void appendSocket(QTcpSocket* socket){
         sockets.append(socket);
     }
+
     void deleteSocket(QTcpSocket* socket){
         QVector<QTcpSocket*>::iterator it;
         for(it=sockets.begin();it!=sockets.end();++it){
@@ -24,6 +27,7 @@ public:
             }
         }
     }
+
     QVector<QTcpSocket*>& getSockets(){
         return sockets;
     }

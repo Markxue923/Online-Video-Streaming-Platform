@@ -9,7 +9,6 @@ class SqlDao
 public:
     SqlDao();
     virtual ~SqlDao();
-
     virtual void insertUser(const User& user)=0;
     virtual void deleteUser(const User& user)=0;
     virtual void updateUser(const User& user)=0;
