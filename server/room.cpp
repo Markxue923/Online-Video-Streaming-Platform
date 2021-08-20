@@ -2,25 +2,24 @@
 
 Room::Room()
 {
-
 }
 
-QString Room::get_room_name() const
+QString Room::getRoomName() const
 {
     return room_name;
 }
 
-void Room::set_room_name(const QString &value)
+void Room::setRoomName(const QString &value)
 {
-    room_name=value;
+    room_name = value;
 }
 
-QVector<QTcpSocket *> &Room::return_Users()
+QVector<QTcpSocket *> &Room::returnUsers()
 {
     return users;
 }
 
-QVector<QString> &Room::return_users_name()
+QVector<QString> &Room::returnUsersName()
 {
     return users_name;
 }

@@ -31,13 +31,11 @@ void User::setIsOnline(bool value)
 }
 
 User::User()
-    :isOnline(false)
+    : isOnline(false)
 {
-
 }
 
 User::User(QString name, QString pwd, bool isOnline)
-    :name(name),pwd(pwd),isOnline(isOnline)
+    : name(name), pwd(pwd), isOnline(isOnline)
 {
-
 }

@@ -2,10 +2,8 @@
 
 SqlDao::SqlDao()
 {
-
 }
 
 SqlDao::~SqlDao()
 {
-
 }

@@ -12,7 +12,7 @@ private:
 
 public:
     User();
-    User(QString name,QString pwd,bool isOnline=false);
+    User(QString name, QString pwd, bool isOnline = false);
     QString getName() const;
     void setName(const QString &value);
     QString getPwd() const;

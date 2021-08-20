@@ -6,10 +6,9 @@
 #include <QTcpSocket>
 #include <QDebug>
 
-SubWidget::SubWidget(QTcpSocket* socket,QWidget *parent):
-    QWidget(parent),
-    ui(new Ui::SubWidget),
-    socket(socket)
+SubWidget::SubWidget(QTcpSocket *socket, QWidget *parent) : QWidget(parent),
+                                                            ui(new Ui::SubWidget),
+                                                            socket(socket)
 {
     ui->setupUi(this);
 }
@@ -19,7 +18,7 @@ SubWidget::~SubWidget()
     delete ui;
 }
 
-QString SubWidget::getName()const
+QString SubWidget::getName() const
 {
     return name;
 }
@@ -29,52 +28,51 @@ void SubWidget::setName(const QString &value)
     name = value;
 }
 
-void SubWidget::appendtext(const QString &text)
+void SubWidget::appendText(const QString &text)
 {
     ui->room_show->clear();
     QStringList list = text.split("\n");
 
-    for(auto it : list){
+    for (auto it : list)
+    {
         ui->room_show->addItem(new QListWidgetItem(it));
     }
     ui->room_show->sortItems();
 }
 
-
 void SubWidget::closeEvent(QCloseEvent *event)
 {
-    on_exit_Button_clicked();
+    onExitButtonClicked();
     event->accept();
 }
 
-void SubWidget::on_create_room_Button_clicked()
+void SubWidget::onCreateRoomButtonClicked()
 {
-    qDebug()<<"creating";
+    qDebug() << "creating";
     Protocol protocol;
     protocol.setName(name);
-    protocol.setType(Protocol::create_room);
+    protocol.setType(Protocol::createRoom);
     socket->write(protocol.toArray());
 }
 
-void SubWidget::on_refresh_Button_clicked()
+void SubWidget::onRefreshButtonClicked()
 {
     Protocol protocol;
-    protocol.setType(Protocol::refresh_room);
+    protocol.setType(Protocol::refreshRoom);
     socket->write(protocol.toArray());
 }
 
-
-void SubWidget::on_room_show_itemDoubleClicked(QListWidgetItem *item)
+void SubWidget::onRoomShowItemDoubleClicked(QListWidgetItem *item)
 {
-    qDebug()<<item->text();
+    qDebug() << item->text();
     Protocol protocol;
     protocol.setName(name);
-    protocol.setType(Protocol::enter_anchor);
+    protocol.setType(Protocol::enterAnchor);
     protocol.setData(item->text());
     socket->write(protocol.toArray());
 }
 
-void SubWidget::on_exit_Button_clicked()
+void SubWidget::onExitButtonClicked()
 {
     Protocol protocol;
     protocol.setType(Protocol::quit);
@@ -82,9 +80,6 @@ void SubWidget::on_exit_Button_clicked()
 
     socket->write(protocol.toArray());
 
-    emit sig_sw_quit();
+    emit sigSwQuit();
     this->close();
 }
-
-
-

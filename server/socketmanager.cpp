@@ -2,12 +2,11 @@
 
 SocketManager::SocketManager()
 {
-
 }
 
-SocketManager* SocketManager::instance = new SocketManager;
+SocketManager *SocketManager::instance = new SocketManager;
 
-SocketManager* SocketManager::getInstance()
+SocketManager *SocketManager::getInstance()
 {
     return instance;
 }

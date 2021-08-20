@@ -1,12 +1,11 @@
 #include "dbmanager.h"
 
 DBManager::DBManager()
-    :db(QSqlDatabase::addDatabase("QSQLITE"))
+    : db(QSqlDatabase::addDatabase("QSQLITE"))
 {
-
 }
 
-DBManager* DBManager::instance = new DBManager;
+DBManager *DBManager::instance = new DBManager;
 
 DBManager *DBManager::getInstance()
 {

@@ -8,27 +8,32 @@ class SocketManager
 {
 private:
     SocketManager();
-    static SocketManager* instance;
-    QVector<QTcpSocket*> sockets;
+    static SocketManager *instance;
+    QVector<QTcpSocket *> sockets;
 
 public:
-    static SocketManager* getInstance();
+    static SocketManager *getInstance();
 
-    void appendSocket(QTcpSocket* socket){
+    void appendSocket(QTcpSocket *socket)
+    {
         sockets.append(socket);
     }
 
-    void deleteSocket(QTcpSocket* socket){
-        QVector<QTcpSocket*>::iterator it;
-        for(it=sockets.begin();it!=sockets.end();++it){
-            if(*it == socket){
+    void deleteSocket(QTcpSocket *socket)
+    {
+        QVector<QTcpSocket *>::iterator it;
+        for (it = sockets.begin(); it != sockets.end(); ++it)
+        {
+            if (*it == socket)
+            {
                 sockets.erase(it);
                 return;
             }
         }
     }
 
-    QVector<QTcpSocket*>& getSockets(){
+    QVector<QTcpSocket *> &getSockets()
+    {
         return sockets;
     }
 };

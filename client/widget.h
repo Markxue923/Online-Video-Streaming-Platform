@@ -6,8 +6,9 @@
 #include <QUdpSocket>
 #include "subwidget.h"
 #include "anchor.h"
-namespace Ui {
-class Widget;
+namespace Ui
+{
+    class Widget;
 }
 
 class Widget : public QWidget
@@ -19,16 +20,16 @@ public:
     ~Widget();
 
 private slots:
-    void on_btnRegist_clicked();
-    void on_btnLogin_clicked();
+    void onRegisterButtonClicked();
+    void onLoginButtonClicked();
     void onReadyRead();
 
 private:
     Ui::Widget *ui;
-    QTcpSocket* socket;
-    SubWidget* sw;
-    anchor* aw;
-    clientwidget* cw;
+    QTcpSocket *socket;
+    SubWidget *sw;
+    anchor *aw;
+    clientwidget *cw;
 };
 
 #endif // WIDGET_H

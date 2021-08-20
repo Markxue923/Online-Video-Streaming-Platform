@@ -4,8 +4,9 @@
 #include <QWidget>
 #include <QTcpServer>
 
-namespace Ui {
-class Widget;
+namespace Ui
+{
+    class Widget;
 }
 
 class Widget : public QWidget
@@ -18,11 +19,11 @@ public:
 
 private:
     Ui::Widget *ui;
-    QTcpServer* server;
+    QTcpServer *server;
 
 private slots:
     void onNewConnection();
-    void onSigSend(QTcpSocket* socket,QByteArray arr);
+    void onSigSend(QTcpSocket *socket, QByteArray arr);
 };
 
 #endif // WIDGET_H

@@ -9,7 +9,7 @@ class Room
 {
 private:
     QVector<QString> users_name;
-    QVector<QTcpSocket*> users;
+    QVector<QTcpSocket *> users;
     QString room_name;
 
 public:
@@ -17,11 +17,11 @@ public:
     //QString getUsername() const;
     //void setUsername(const QString &value);
 
-    QString get_room_name()const;
-    void set_room_name(const QString &value);
+    QString getRoomName() const;
+    void setRoomName(const QString &value);
 
-    QVector<QTcpSocket *>& return_Users();
-    QVector<QString>& return_users_name();
+    QVector<QTcpSocket *> &returnUsers();
+    QVector<QString> &returnUsersName();
 };
 
 #endif // ROOM_H

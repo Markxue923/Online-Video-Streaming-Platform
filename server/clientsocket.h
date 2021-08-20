@@ -10,25 +10,25 @@ class ClientSocket : public QObject
     Q_OBJECT
 
 private:
-    QTcpSocket* socket;
+    QTcpSocket *socket;
 
-    void registration(Protocol& p);
-    void login(Protocol& p);
-    void chat(Protocol& p);
-    void quit(Protocol& p);
-    void sql(Protocol& p);
-    void create_room(Protocol& p);
-    void enter_anchor(Protocol& p);
-    void refresh_room(Protocol& p);
-    void anchor_quit(Protocol& p);
-    void refresh_client(Protocol& p);
-    void client_quit(Protocol& p);
+    void registration(Protocol &p);
+    void login(Protocol &p);
+    void chat(Protocol &p);
+    void quit(Protocol &p);
+    void sql(Protocol &p);
+    void createRoom(Protocol &p);
+    void enterAnchor(Protocol &p);
+    void refreshRoom(Protocol &p);
+    void anchorQuit(Protocol &p);
+    void refreshClient(Protocol &p);
+    void clientQuit(Protocol &p);
 
 public:
-    explicit ClientSocket(QTcpSocket* socket,QObject *parent = 0);
+    explicit ClientSocket(QTcpSocket *socket, QObject *parent = 0);
 
 signals:
-    void sigSend(QTcpSocket*,QByteArray);
+    void sigSend(QTcpSocket *, QByteArray);
 
 public slots:
     void onReadyRead();

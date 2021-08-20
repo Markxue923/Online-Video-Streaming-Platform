@@ -2,18 +2,17 @@
 #define VIDEOSURFACE_H
 
 #include <QObject>
-#include<QAbstractVideoSurface>
+#include <QAbstractVideoSurface>
 
 class VideoSurface : public QAbstractVideoSurface
 {
     Q_OBJECT
 
-
 signals:
     void videoChanged(QVideoFrame);
 
 public:
-    VideoSurface(QObject* parent =0);
+    VideoSurface(QObject *parent = 0);
     virtual QList<QVideoFrame::PixelFormat> supportedPixelFormats(QAbstractVideoBuffer::HandleType handletype) const;
     bool present(const QVideoFrame &frame);
 };

@@ -1,17 +1,18 @@
 #ifndef PACK_H
 #define PACK_H
 
-
-typedef struct{
+typedef struct
+{
     int width;
     int height;
     int bytesPerline;
     bool isLastpack;
     int packTaken;
     char data[4096];
-}ImagePackage;
+} ImagePackage;
 
-struct AudioPackage{
+struct AudioPackage
+{
     char data[1024];
     int datalen;
 };
